@@ -8,30 +8,31 @@ namespace ShopApp.Project
     {
         static void Main(string[] args)
         {
-            //List<Item> Items = new List<Item>();
+            Shop shop = new Shop();
 
-            //Items.Add(new Item("Candy", 4));
-            //Items.Add(new Item("Book", 8));
-            //Items.Add(new Item("Juice", 2));
-            
-            //Customer Customer = new Customer("Matt", 10);
-            Shop Shop = new Shop();
+            Console.WriteLine("Commands:");
+            Console.WriteLine("Create customer 'name' 'budget'");
+            Console.WriteLine("'name' Buys 'item' 'quantity (optional, default = 1)'");
+            Console.WriteLine("Topup 'name' 'amount'");
+            Console.WriteLine("Exit");
+            string command = "";
 
-            Console.WriteLine("Welcome! What would you like to buy?");
-            string Command = "";
-
-            while(Command != "Exit")
+            while(command != "Exit")
             {
-                Command = Console.ReadLine();
-                if (Command.StartsWith("Buy"))
+                command = Console.ReadLine();
+                if (command.Contains("Buys"))
                 {
-                    Shop.SearchForItemInShop(Command);
+                    shop.SearchAndPurchase(command);
                 }
 
-                if (Command.StartsWith("Topup"))
+                if (command.StartsWith("Topup"))
                 {
-                    //Customer.Topup(Command);
-                    Shop.TopupCustomer(Command);
+                    shop.TopupCustomer(command);
+                }
+
+                if (command.StartsWith("Create customer"))
+                {
+                    shop.CreateCustomer(command);
                 }
             }
         }
